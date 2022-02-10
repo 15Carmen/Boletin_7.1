@@ -1,29 +1,65 @@
 package Persona;
 
+import com.sun.source.doctree.SummaryTree;
+
 public class Persona {
 
-    //Atributos
+    /**
+     * Atributos
+     */
     private String nombre;
     private int edad;
     private String dni;
-    private char genero;
+    private String genero;
     private float peso;
     private float altura;
+    static int contadorPeso=0;
+    static int contadorAltura=0;
+    static int contadorPersonas=0;
+    static int contadorEdad=0;
 
-    //Constructor
+    /**
+     * Constructor sin parametros
+     */
+
+    public Persona(){
+
+        contadorPeso++;
+        contadorAltura++;
+        contadorPersonas++;
+        contadorEdad++;
+    }
+
+    /**
+     * Constructor con parametros
+     *
+     * @param nombre
+     * @param edad
+     * @param dni
+     * @param genero
+     * @param peso
+     * @param altura
+     */
 
     public Persona (String nombre, int edad, String dni,
-                    char genero, float peso, float altura){
+                    String genero, float peso, float altura){
         this.nombre= nombre;
         this.edad= edad;
         this.dni= dni;
         this.genero=genero;
         this.peso=peso;
         this.altura=altura;
+        contadorPeso++;
+        contadorAltura++;
+        contadorPersonas++;
+        contadorEdad++;
 
     }
 
-    //Constructor copia
+    /**
+     * constructor copia
+     * @param copyPerson
+     */
 
     public Persona (Persona copyPerson){
         this.nombre= copyPerson.nombre;
@@ -32,11 +68,16 @@ public class Persona {
         this.genero= copyPerson.genero;
         this.peso=copyPerson.peso;
         this.altura=copyPerson.altura;
+        contadorPeso++;
+        contadorAltura++;
+        contadorPersonas++;
+        contadorEdad++;
     }
 
-    public Persona(){
-
-    }
+    /**
+     * getters y setters
+     * @return
+     */
 
     public String getNombre() {
         return nombre;
@@ -62,11 +103,11 @@ public class Persona {
         this.dni = dni;
     }
 
-    public char getGenero() {
+    public String getGenero() {
         return genero;
     }
 
-    public void setGenero(char genero) {
+    public void setGenero(String genero) {
         this.genero = genero;
     }
 
@@ -86,23 +127,30 @@ public class Persona {
         this.altura = altura;
     }
 
-    /*
-    queremos calcular el indice de masa corporal de la persona
-    para saber si la persona está en su peso ideal usando la fórmula
-    peso (kg)/altura^2 (m)
-
-    IMC	                                Nivel de peso
-    Por debajo de 18.5	                 Bajo peso
-    18.5—24.9	                            Normal
-    25.0—29.9	                          Sobrepeso
-    30.0 o más	                            Obeso
-
+    /**
+     * metodo para calcular el IMC
+     *      *
+     * precondiciones:
+     *
+     *   queremos calcular el indice de masa corporal de la persona
+     *   para saber si la persona está en su peso ideal usando la fórmula
+     *   peso (kg)/altura^2 (m) =
+     *   @return this.peso/Math.pow(this.altura, 2.0)
+     *
+     *   IMC	                          Nivel de peso
+     *   Por debajo de 18.5	                Bajo peso
+     *   18.5—24.9	                         Normal
+     *   25.0—29.9	                        Sobrepeso
+     *   30.0 o más	                          Obeso
      */
-
     public double calcularIMC(){
         return this.peso/Math.pow(this.altura, 2.0);
     }
 
+    /**
+     * metodo para saber si la persona está en su peso ideal
+     * @return ideal
+     */
     public int saberPesoIdeal(){
         int ideal=0;
 
@@ -116,6 +164,10 @@ public class Persona {
         return ideal;
     }
 
+    /**
+     * metodo para imprimir en pantalla si la persona está en su
+     * peso ideal o no usando el metodo anterior
+     */
     public void pintarPeso(){
 
         if (saberPesoIdeal()==-1){
@@ -126,4 +178,34 @@ public class Persona {
             System.out.println("Está usted en su peso ideal");
         }
     }
+
+    /**
+     * metodo para saber si la persona es mayor de edad
+     */
+
+    public void mayorEdad(){
+
+        if (this.edad>=18){
+            System.out.println("Usted es mayor de edad");
+        }else {
+            System.out.println("Está chiquit@, no tienes edad para beber todavía");
+        }
+
+    }
+
+    public int compareToNombres(Persona personita){
+        return (this.nombre).compareTo(personita.getNombre());
+    }
+
+    public String toString(){
+        return "Nombre: "+ this.nombre+ System.lineSeparator()+
+                " Edad: "+ this.edad+ System.lineSeparator()+
+                " Dni: "+ this.dni + System.lineSeparator()+
+                " Peso: "+ this.peso + System.lineSeparator()+
+                " Altura: "+ this.altura+ System.lineSeparator()+
+                " IMC: "+ calcularIMC();
+    }
+
+
+
 }
