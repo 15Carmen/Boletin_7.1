@@ -1,7 +1,5 @@
 package Persona;
 
-import com.sun.source.doctree.SummaryTree;
-
 public class Persona {
 
     /**
@@ -11,8 +9,8 @@ public class Persona {
     private int edad;
     private String dni;
     private String genero;
-    private float peso;
-    private float altura;
+    private double peso;
+    private double altura;
     static int contadorPeso=0;
     static int contadorAltura=0;
     static int contadorPersonas=0;
@@ -79,6 +77,7 @@ public class Persona {
      * @return
      */
 
+    //nombre
     public String getNombre() {
         return nombre;
     }
@@ -87,6 +86,8 @@ public class Persona {
         this.nombre = nombre;
     }
 
+
+    //edad
     public int getEdad() {
         return edad;
     }
@@ -95,6 +96,8 @@ public class Persona {
         this.edad = edad;
     }
 
+
+    //dni
     public String getDni() {
         return dni;
     }
@@ -103,6 +106,8 @@ public class Persona {
         this.dni = dni;
     }
 
+
+    //genero
     public String getGenero() {
         return genero;
     }
@@ -111,7 +116,9 @@ public class Persona {
         this.genero = genero;
     }
 
-    public float getPeso() {
+
+    //peso
+    public double getPeso() {
         return peso;
     }
 
@@ -119,7 +126,9 @@ public class Persona {
         this.peso = peso;
     }
 
-    public float getAltura() {
+
+    //altura
+    public double getAltura() {
         return altura;
     }
 
@@ -143,6 +152,7 @@ public class Persona {
      *   25.0—29.9	                        Sobrepeso
      *   30.0 o más	                          Obeso
      */
+
     public double calcularIMC(){
         return this.peso/Math.pow(this.altura, 2.0);
     }
@@ -206,6 +216,28 @@ public class Persona {
                 " IMC: "+ calcularIMC();
     }
 
+    public double mediaPeso(){
 
+        contadorPeso += this.peso;
+        double media = 0.0;
+        media=contadorPeso/contadorPersonas;
+        return media;
+    }
+
+    public double mediaAltura(){
+
+        contadorAltura+= this.altura;
+        double media = 0.0;
+        media=contadorAltura/contadorPersonas;
+        return media;
+    }
+
+    public double mediaEdad(){
+
+        contadorEdad+= this.edad;
+        double media = 0.0;
+        media=contadorEdad/contadorPersonas;
+        return media;
+    }
 
 }
