@@ -1,6 +1,11 @@
 package Persona;
 
-public class Persona {
+import java.util.Objects;
+import java.util.Scanner;
+
+public class Persona implements Comparable<Persona>{
+
+    static Scanner personaSC = new Scanner(System.in);
 
     /**
      * Atributos
@@ -17,7 +22,7 @@ public class Persona {
     static int contadorEdad=0;
 
     /**
-     * Constructor sin parametros
+     * Constructor por defecto
      */
 
     public Persona(){
@@ -203,8 +208,23 @@ public class Persona {
 
     }
 
-    public int compareToNombres(Persona personita){
-        return (this.nombre).compareTo(personita.getNombre());
+    @Override
+    public int compareTo (Persona personita){
+        return (this.nombre).compareTo(personita.nombre);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean oli = false;
+        if (this==obj){
+            oli=true;
+        }else if (obj!=null && obj instanceof Persona){
+            Persona personita = (Persona) obj;
+            if (this.nombre.equals(personita.nombre)) &&
+            this
+            }
+        }
+        return super.equals(obj);
     }
 
     public String toString(){
@@ -214,6 +234,61 @@ public class Persona {
                 " Peso: "+ this.peso + System.lineSeparator()+
                 " Altura: "+ this.altura+ System.lineSeparator()+
                 " IMC: "+ calcularIMC();
+    }
+
+    /**
+     * metodo para crear a la persona
+     * @return personita
+     */
+
+    public static Persona crearPersona(){
+
+        Persona personita = new Persona();
+
+        System.out.println("Indique el nombre de la persona:");
+        personita.nombre= personaSC.nextLine();
+
+        System.out.println("Indique su DNI:");
+        personita.dni= personaSC.nextLine();
+
+        System.out.println("Indique la edad que tiene: ");
+        personita.edad= personaSC.nextInt();
+
+        System.out.println("Indique su peso: ");
+        personita.peso= personaSC.nextDouble();
+
+        System.out.println("Indique su altura:");
+        personita.altura= personaSC.nextDouble();
+
+        System.out.println("Indique su género (hombre, mujer, otro): ");
+        personita.genero= Persona.comprobarGenero();
+
+        return personita;
+    }
+
+    public static String comprobarGenero(){
+
+
+        String genero;
+
+        do {
+            personaSC.nextLine();
+            genero= personaSC.next();
+
+            if (Objects.equals(genero, "mujer")){
+                genero= "mujer";
+            }else
+                if (Objects.equals(genero, "hombre")){
+                    genero= "hombre";
+                }else
+                    if (Objects.equals(genero, "otro")){
+                         genero= "otro";
+                    }else{
+                        System.out.println("Género no válido");
+                    }
+
+        }while (genero != "mujer" && genero != "hombre" && genero != "otro");
+     return genero;
     }
 
     public double mediaPeso(){
