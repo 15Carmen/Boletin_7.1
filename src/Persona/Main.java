@@ -10,9 +10,7 @@ public class Main {
     }
     public static void main(String[] args) {
 
-        //Persona.crearPersona();
-
-        System.out.println(Persona.crearPersona());
+        menu();
         /**
         Scanner sc = new Scanner(System.in);
 
@@ -42,4 +40,84 @@ public class Main {
 
 **/
     }
+
+    public static catalogoPersonas miPersona;
+    public static Scanner teclado;
+
+    public static void menu() {
+
+        miPersona = new catalogoPersonas();
+
+        teclado = new Scanner(System.in);
+
+        String opc;
+
+        do {
+            System.out.println("1.-Introducir Astros");
+            System.out.println("2.-Visualizar Personas");
+            System.out.println("3.-Media peso");
+            System.out.println("4.-Media altura");
+            System.out.println("5.-Media edad");
+            System.out.println("Presione FIN para Salir");
+            opc = teclado.nextLine();
+
+            //opc=opc.toUpperCase();
+
+            switch (opc) {
+                case "1":
+                    introduce_datos();
+                    break;
+                case "2":
+                    visualiza_personas();
+                    break;
+               /** case "3":
+                    media_peso();
+                    break;
+                case "4":
+                    media_altura();
+                    break;
+                case "5":
+                    media_edad();
+                    break;
+                **/
+            }
+
+        } while (!opc.equals("FIN"));
+        //teclado.nextLine();
+    }
+
+    private static void introduce_datos() {
+
+        try{
+            System.out.println("Ingrese nombre");
+            String nombre=teclado.next();
+
+            System.out.println("Ingrese edad");
+            int edad=teclado.nextInt();
+            teclado.nextLine();
+
+            System.out.println("Ingrese DNI");
+            String dni=teclado.nextLine();
+
+            System.out.println("Ingrese el género (1. Hombre, 2. Mujer, 3. Otro)");
+            String genero=teclado.nextLine();
+
+            System.out.println("Ingrese el peso");
+            double peso=teclado.nextDouble();
+
+            System.out.println("Ingrese la altura");
+            double altura= teclado.nextDouble();
+
+            miPersona.añade(new Persona(nombre, edad, dni, genero, (float) peso, (float) altura));
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void visualiza_personas() {
+
+        miPersona.visualizaCatalogo();
+
+    }
+
 }

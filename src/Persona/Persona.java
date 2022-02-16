@@ -23,9 +23,13 @@ public class Persona implements Comparable<Persona>{
 
     /**
      * Constructor por defecto
+     * @param nombre
+     * @param edad
+     * @param dni
+     * @param genero
      */
 
-    public Persona(){
+    public Persona(String nombre, int edad, String dni, String genero){
 
         contadorPeso++;
         contadorAltura++;
@@ -213,7 +217,8 @@ public class Persona implements Comparable<Persona>{
         return (this.nombre).compareTo(personita.nombre);
     }
 
-    @Override
+    /**
+     @Override
     public boolean equals(Object obj) {
         boolean oli = false;
         if (this==obj){
@@ -226,7 +231,8 @@ public class Persona implements Comparable<Persona>{
         }
         return super.equals(obj);
     }
-
+**/
+    /**
     public String toString(){
         return "Nombre: "+ this.nombre+ System.lineSeparator()+
                 " Edad: "+ this.edad+ System.lineSeparator()+
@@ -235,15 +241,16 @@ public class Persona implements Comparable<Persona>{
                 " Altura: "+ this.altura+ System.lineSeparator()+
                 " IMC: "+ calcularIMC();
     }
-
+**/
     /**
      * metodo para crear a la persona
      * @return personita
      */
 
+    /**
     public static Persona crearPersona(){
 
-        Persona personita = new Persona();
+        Persona personita = new Persona(nombre, edad, dni, genero);
 
         System.out.println("Indique el nombre de la persona:");
         personita.nombre= personaSC.nextLine();
@@ -265,7 +272,30 @@ public class Persona implements Comparable<Persona>{
 
         return personita;
     }
-
+**/
+     public String toString() {
+     String _genero = null;
+     switch (genero) {
+        case 1:
+        _genero = "HOMBRE";
+        break;
+     case 2:
+         _genero = "MUJER";
+        break;
+     case 3:
+        _genero = "OTRO";
+        break;
+     }
+     return "==============================================="+ System.lineSeparator() +
+     "nombre: " + nombre + System.lineSeparator() +
+     "edad: " + edad + System.lineSeparator()+
+     "dni: " + dni + System.lineSeparator()+
+     "genero: " + _genero + System.lineSeparator()+
+     "peso: " + peso + System.lineSeparator()+
+     "altura: " + altura + System.lineSeparator() +
+     "===============================================" + System.lineSeparator();
+     }
+     /**
     public static String comprobarGenero(){
 
 
@@ -290,6 +320,7 @@ public class Persona implements Comparable<Persona>{
         }while (genero != "mujer" && genero != "hombre" && genero != "otro");
      return genero;
     }
+**/
 
     public double mediaPeso(){
 
@@ -314,5 +345,4 @@ public class Persona implements Comparable<Persona>{
         media=contadorEdad/contadorPersonas;
         return media;
     }
-
 }
